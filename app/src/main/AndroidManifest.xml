@@ -22,9 +22,12 @@
         <receiver android:name=".ExampleBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- This doesnt work anymore in new API -->
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <!-- This doesnt work anymore in new API -->
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

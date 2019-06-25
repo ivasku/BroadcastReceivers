@@ -17,10 +17,21 @@ public class ExampleBroadcastReceiver extends BroadcastReceiver {
             Toast.makeText(context, "BOOT COMPLETED" , Toast.LENGTH_LONG).show();
         }
 
-        //pre nuggat
+        //pre nuggat this doesn`t work when we register the action statically via manifest but we must add it dynamic
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             Log.d(TAG, "onReceive: CONNECTIVITY_ACTION");
-            Toast.makeText(context, "CONNECTIVITY_ACTION" , Toast.LENGTH_LONG).show();
+
+            //send boolean extra
+            boolean noConn = intent.getBooleanExtra(
+                    ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
+            );
+
+            if (noConn) {
+                Toast.makeText(context, "Houston we have a problem" , Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(context, "Internet works" , Toast.LENGTH_LONG).show();
+            }
         }
 
     }
